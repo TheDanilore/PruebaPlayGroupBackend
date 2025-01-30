@@ -19,26 +19,17 @@ use Spatie\Permission\Models\Permission;
 
 class PermissionController extends Controller
 {
-    /* function __construct()
-    {
-        $this->middleware('permission:lista-permiso|ver-permiso|crear-permiso|editar-permiso|borrar-permiso', ['only' => ['index']]);
-        $this->middleware('permission:crear-permiso', ['only' => ['create', 'store']]);
-        $this->middleware('permission:editar-permiso', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:borrar-permiso', ['only' => ['destroy']]);
-        $this->middleware('permission:ver-permiso', ['only' => ['show']]);
-    } */
-
 
     public function index(Request $request)
     {
         // Establecer la cantidad de permisos por página, por defecto 15
-        $perPage = $request->get('per_page', 15);
+        $perPage = $request->get('per_page', 5);
 
         // Obtener los permisos paginados
         $permisos = Permiso::paginate($perPage);
 
         // Retornar los permisos paginados en formato JSON
-        return response()->json($permisos->items());
+        return response()->json($permisos);
     }
 
 

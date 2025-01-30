@@ -20,25 +20,16 @@ use PhpOffice\PhpWord\IOFactory;
 class UnidadMedidaController extends Controller
 {
 
-    /*     function __construct()
-    {
-        $this->middleware('permission:lista-unidadmedida|ver-unidadmedida|crear-unidadmedida|editar-unidadmedida|borrar-unidadmedida', ['only' => ['index']]);
-        $this->middleware('permission:crear-unidadmedida', ['only' => ['create', 'store']]);
-        $this->middleware('permission:editar-unidadmedida', ['only' => ['edit', 'update']]);
-        $this->middleware('permission:borrar-unidadmedida', ['only' => ['destroy']]);
-        $this->middleware('permission:ver-unidadmedida', ['only' => ['show']]);
-    } */
-
     public function index(Request $request)
     {
         // Establecer la cantidad --- por página, por defecto 15
-        $perPage = $request->get('per_page', 15);
+        $perPage = $request->get('per_page', 5);
 
         // Obtener paginados
         $unidadmedida = UnidadMedida::paginate($perPage);
 
         // Retornar paginados en formato JSON
-        return response()->json($unidadmedida->items());  // Solo devuelve los items
+        return response()->json($unidadmedida);  // Solo devuelve los items
     }
 
     public function store(Request $request)

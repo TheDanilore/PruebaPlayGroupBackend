@@ -27,13 +27,13 @@ class UsuarioController extends Controller
     public function index(Request $request)
     {
         // Establecer la cantidad --- por página, por defecto 15
-        $perPage = $request->get('per_page', 15);
+        $perPage = $request->get('per_page', 5);
 
         // Obtener paginados
         $usuarios = User::with('roles')->paginate($perPage);
 
         // Retornar paginados en formato JSON
-        return response()->json($usuarios->items());
+        return response()->json($usuarios);
     }
 
 

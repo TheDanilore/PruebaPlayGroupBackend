@@ -11,13 +11,13 @@ class ColorController extends Controller
     public function index(Request $request)
     {
         // Establecer la cantidad de colores por página, por defecto 15
-        $perPage = $request->get('per_page', 15);
+        $perPage = $request->get('per_page', 5);
 
         // Obtener los colores paginados
         $colores = Color::paginate($perPage);
 
         // Retornar los colores paginados en formato JSON
-        return response()->json($colores->items());
+        return response()->json($colores);
     }
 
     // Crear un nuevo color

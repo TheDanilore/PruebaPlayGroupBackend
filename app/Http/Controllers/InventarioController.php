@@ -14,7 +14,7 @@ class InventarioController extends Controller
     public function index(Request $request)
     {
         // Establecer la cantidad --- por página, por defecto 15
-        $perPage = $request->get('per_page', 15);
+        $perPage = $request->get('per_page', 2);
 
         $inventario = Inventario::with(['producto', 'variacion.color', 'variacion.tamano', 'variacion.longitud'])->paginate($perPage);
 
@@ -98,7 +98,7 @@ class InventarioController extends Controller
         }
     }
 
-        /**
+    /**
      * Obtiene el inventario específico para un producto
      *
      * @param int $productoId
@@ -111,14 +111,20 @@ class InventarioController extends Controller
                 ->with(['variacion.color:id,descripcion', 'variacion.tamano:id,descripcion', 'variacion.longitud:id,descripcion'])
                 ->get()
                 ->map(function ($item) {
+                    // Obtener las variaciones asociadas
+                    $variacion = $item->variacion;
+
+
                     return [
                         'id' => $item->id,
                         'producto_id' => $item->producto_id,
-                        'color_id' => $item->color_id,
-                        'tamano_id' => $item->tamano_id,
-                        'longitud_id' => $item->longitud_id,
+                        'variacion_id' => $variacion->id, // Se agrega el ID de la variación
                         'cantidad' => $item->cantidad,
                         'precio_unitario' => $item->precio_unitario,
+                        // Descripciones obtenidas desde las relaciones de la variación
+                        'color_id' => $variacion->color->id,
+                        'tamano_id' => $variacion->tamano->id,
+                        'longitud_id' => $variacion->longitud->id,
                         'color' => $item->color ? $item->color->descripcion : null,
                         'tamano' => $item->tamano ? $item->tamano->descripcion : null,
                         'longitud' => $item->longitud ? $item->longitud->descripcion : null

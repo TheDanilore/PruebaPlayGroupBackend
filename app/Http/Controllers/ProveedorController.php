@@ -13,13 +13,13 @@ class ProveedorController extends Controller
     public function index(Request $request)
     {
         // Establecer la cantidad de productos por página, por defecto 15
-        $perPage = $request->get('per_page', 15);
+        $perPage = $request->get('per_page', 5);
 
         // Obtener los productos paginados
         $proveedores = Proveedor::paginate($perPage);
 
         // Retornar los productos paginados en formato JSON
-        return response()->json($proveedores->items());
+        return response()->json($proveedores);
     }
 
     // Crear un nuevo proveedor

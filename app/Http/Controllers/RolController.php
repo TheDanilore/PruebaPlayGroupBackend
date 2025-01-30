@@ -26,13 +26,13 @@ class RolController extends Controller
     public function index(Request $request)
     {
         // Establecer la cantidad de productos por página, por defecto 15
-        $perPage = $request->get('per_page', 15);
+        $perPage = $request->get('per_page', 5);
 
         // Obtener los productos paginados
         $roles = Role::with('permissions')->paginate($perPage);
 
         // Retornar los productos paginados en formato JSON
-        return response()->json($roles->items());
+        return response()->json($roles);
     }
 
     public function store(Request $request)
@@ -44,7 +44,7 @@ class RolController extends Controller
                 'permissions.required' => 'Elegir un permiso al menos es obligatorio.',
                 'name.unique' => 'El nombre ya esta en uso.',
             ];
-            
+
             // Validar los datos del formulario
             $validatedData = $request->validate([
                 'name' => 'required|unique:roles,name',

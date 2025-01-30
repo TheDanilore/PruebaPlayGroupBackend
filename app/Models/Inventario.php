@@ -10,7 +10,7 @@ class Inventario extends Model
     use HasFactory;
 
     protected $table = 'inventario';
-    
+
     protected $fillable = [
         'producto_id',
         'variacion_id',

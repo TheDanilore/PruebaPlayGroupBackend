@@ -22,13 +22,13 @@ class UbicacionController extends Controller
     public function index(Request $request)
     {
         // Establecer la cantidad --- por página, por defecto 15
-        $perPage = $request->get('per_page', 15);
+        $perPage = $request->get('per_page', 5);
 
         // Obtener paginados
         $ubicaciones = Ubicacion::paginate($perPage);
 
         // Retornar paginados en formato JSON
-        return response()->json($ubicaciones->items());  // Solo devuelve los items
+        return response()->json($ubicaciones);  // Solo devuelve los items
     }
 
 

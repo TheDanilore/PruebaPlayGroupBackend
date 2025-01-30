@@ -11,13 +11,13 @@ class TamanoController extends Controller
     public function index(Request $request)
     {
         // Establecer la cantidad de tamanos por página, por defecto 15
-        $perPage = $request->get('per_page', 15);
+        $perPage = $request->get('per_page', 5);
 
         // Obtener los tamanos paginados
         $tamanos = Tamano::paginate($perPage);
 
         // Retornar los tamanos paginados en formato JSON
-        return response()->json($tamanos->items());
+        return response()->json($tamanos);
     }
 
     // Crear un nuevo tamano

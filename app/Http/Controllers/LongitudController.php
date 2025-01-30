@@ -11,13 +11,13 @@ class LongitudController extends Controller
     public function index(Request $request)
     {
         // Establecer la cantidad de longitudes por página, por defecto 15
-        $perPage = $request->get('per_page', 15);
+        $perPage = $request->get('per_page', 5);
 
         // Obtener las longitudes paginados
         $longitudes = Longitud::paginate($perPage);
 
         // Retornar las longitudes paginados en formato JSON
-        return response()->json($longitudes->items());
+        return response()->json($longitudes);
     }
 
     // Crear un nuevo longitud

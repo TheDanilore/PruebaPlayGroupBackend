@@ -11,13 +11,13 @@ class CategoriaProductoController extends Controller
     public function index(Request $request)
     {
         // Establecer la cantidad de categorias por página, por defecto 15
-        $perPage = $request->get('per_page', 15);
+        $perPage = $request->get('per_page', 5);
 
         // Obtener las categorias paginados
         $categorias = CategoriaProducto::paginate($perPage);
 
         // Retornar las categorias paginados en formato JSON
-        return response()->json($categorias->items());
+        return response()->json($categorias);
     }
 
     // Crear una nueva categoría

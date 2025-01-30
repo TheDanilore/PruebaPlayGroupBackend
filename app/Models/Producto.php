@@ -32,7 +32,7 @@ class Producto extends Model
 
     public function categoria()
     {
-        return $this->belongsTo(CategoriaProducto::class, 'categoria_productos_id');
+        return $this->belongsTo(CategoriaProducto::class, 'categoria_producto_id');
     }
 
     public function unidadMedida()

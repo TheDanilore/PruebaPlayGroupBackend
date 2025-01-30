@@ -15,36 +15,6 @@ use Illuminate\Validation\Rule;
 
 class ProductoController extends Controller
 {
-    //Mostrar todos los productos
-    // public function index(Request $request)
-    // {
-    //     $perPage = min($request->get('per_page', 10), 100); // Paginación con un valor máximo de 10
-
-    //     $query = Producto::with(['imagen', 'inventario'])
-    //         ->leftJoin('inventario', 'producto.id', '=', 'inventario.producto_id')
-    //         ->select('producto.id', 'producto.nombre', 'producto.descripcion', 'producto.categoria_producto_id', 'producto.estado') // Agrega aquí las columnas necesarias
-    //         ->selectRaw('COALESCE(SUM(inventario.cantidad), 0) as total_stock')
-    //         ->selectRaw('COALESCE(MAX(inventario.precio_unitario), 0) as precio_unitario_maximo')
-    //         ->groupBy('producto.id', 'producto.nombre', 'producto.descripcion', 'producto.categoria_producto_id', 'producto.estado'); // Agregar todas las columnas seleccionadas
-
-
-    //     // Filtrar por categoría
-    //     if ($request->has('categoria')) {
-    //         $query->where('producto.categoria_producto_id', $request->get('categoria'));
-    //     }
-
-    //     // Filtrar por estado
-    //     if ($request->has('estado')) {
-    //         $query->where('producto.estado', $request->get('estado'));
-    //     }
-
-
-    //     // Obtener los productos con paginación
-    //     $productos = $query->paginate($perPage);
-
-    //     return response()->json($productos);
-    // }
-
     public function index(Request $request)
     {
         // Establecer la cantidad --- por página, por defecto 15

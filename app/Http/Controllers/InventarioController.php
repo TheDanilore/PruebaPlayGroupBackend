@@ -11,9 +11,13 @@ use Illuminate\Support\Facades\Log;
 class InventarioController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $inventario = Inventario::with(['producto', 'variacion.color', 'variacion.tamano', 'variacion.longitud'])->get();
+        // Establecer la cantidad --- por página, por defecto 15
+        $perPage = $request->get('per_page', 15);
+
+        $inventario = Inventario::with(['producto', 'variacion.color', 'variacion.tamano', 'variacion.longitud'])->paginate($perPage);
+
         return response()->json($inventario);
     }
 

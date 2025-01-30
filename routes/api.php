@@ -29,7 +29,7 @@ Route::resource('colores', ColorController::class)->only(['index', 'store', 'upd
 Route::resource('longitudes', LongitudController::class)->only(['index', 'store', 'update', 'show', 'destroy']);
 Route::resource('tamanos', TamanoController::class)->only(['index', 'store', 'update', 'show', 'destroy']);
 
-
+Route::get('inventario/catalogo', [InventarioController::class, 'mostrarCatalogo']);
 Route::get('inventario/producto/{productoId}', [InventarioController::class, 'getInventarioByProducto']);
 Route::get('inventario/producto/{productoId}/resumen', [InventarioController::class, 'getInventarioResumenByProducto']);
 Route::get('inventario', [InventarioController::class, 'index']);
